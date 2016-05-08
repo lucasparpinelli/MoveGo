@@ -96,7 +96,7 @@ public class NovoPedidoFragment extends Fragment {
             Pedido pedido = new Pedido();
             pedido.setDataEntrega(new Date());
             pedido.setDestinatario("Xablau");
-            pedido.setOrigem("Bahia");
+            pedido.setOrigem("Teste");
             pedido.setEmbalagem("Material");
             pedido.setViacao(null);
             pedido.setDestino("Sao Paulo");
@@ -108,8 +108,8 @@ public class NovoPedidoFragment extends Fragment {
     }
 
     private boolean validacao() {
-        if (mEtOrigem.getText().equals("") && mEtDestino.getText().equals("") && mEtDestinatario.getText().equals("") && mEtEmbalagem.getText().equals("") &&
-            mSpinnerViacoes.getSelectedItemPosition() == 0 && mSpinnerTipoServico.getSelectedItemPosition() == 0 && mSpinnerTipoEncomenda.getSelectedItemPosition() == 0) {
+        if (mEtOrigem.getText().equals("") || mEtDestino.getText().equals("") || mEtDestinatario.getText().equals("") || mEtEmbalagem.getText().equals("") ||
+            mSpinnerViacoes.getSelectedItemPosition() == 0 || mSpinnerTipoServico.getSelectedItemPosition() == 0 || mSpinnerTipoEncomenda.getSelectedItemPosition() == 0) {
             Snackbar.make(getView(), "Preencha os campos", Snackbar.LENGTH_LONG).show();
             return false;
         }
