@@ -8,10 +8,12 @@ import java.util.Date;
 public class Pedido {
 
     private String origem, destino, destinatario, embalagem;
-    private Date dataExpedicao, dataEntrega;
-    private Viacao viacao;
-    private TipoServico tipoServico;
-    private TipoEncomenda tipoEncomenda;
+    private long dataExpedicao, dataEntrega;
+    private String viacao;
+    private String tipoServico;
+    private String tipoEncomenda;
+
+    public Pedido(){}
 
     public String getOrigem() {
         return origem;
@@ -45,43 +47,43 @@ public class Pedido {
         this.embalagem = embalagem;
     }
 
-    public Date getDataExpedicao() {
+    public long getDataExpedicao() {
         return dataExpedicao;
     }
 
-    public void setDataExpedicao(Date dataExpedicao) {
+    public void setDataExpedicao(long dataExpedicao) {
         this.dataExpedicao = dataExpedicao;
     }
 
-    public Date getDataEntrega() {
+    public long getDataEntrega() {
         return dataEntrega;
     }
 
-    public void setDataEntrega(Date dataEntrega) {
+    public void setDataEntrega(long dataEntrega) {
         this.dataEntrega = dataEntrega;
     }
 
-    public Viacao getViacao() {
+    public String getViacao() {
         return viacao;
     }
 
-    public void setViacao(Viacao viacao) {
+    public void setViacao(String viacao) {
         this.viacao = viacao;
     }
 
-    public TipoServico getTipoServico() {
+    public String getTipoServico() {
         return tipoServico;
     }
 
-    public void setTipoServico(TipoServico tipoServico) {
+    public void setTipoServico(String tipoServico) {
         this.tipoServico = tipoServico;
     }
 
-    public TipoEncomenda getTipoEncomenda() {
+    public String getTipoEncomenda() {
         return tipoEncomenda;
     }
 
-    public void setTipoEncomenda(TipoEncomenda tipoEncomenda) {
+    public void setTipoEncomenda(String tipoEncomenda) {
         this.tipoEncomenda = tipoEncomenda;
     }
 }

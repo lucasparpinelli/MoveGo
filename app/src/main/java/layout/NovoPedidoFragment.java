@@ -46,19 +46,18 @@ public class NovoPedidoFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.adicionar_pedido_itemmenu:
-                //getActivity().finish();
                 Firebase ref = new Firebase(Constante.FIREBASE_URL);
                 Firebase pedidoDatabse = ref.child("users").child("1");
                 Pedido pedido = new Pedido();
-                pedido.setDataEntrega(new Date());
+                pedido.setDataEntrega(0);
                 pedido.setDestinatario("Xablau");
                 pedido.setOrigem("Bahia");
                 pedido.setEmbalagem("Material");
                 pedido.setViacao(null);
                 pedido.setDestino("Sao Paulo");
-                pedido.setDataExpedicao(new Date());
-                pedido.setTipoEncomenda(null);
-                pedido.setTipoServico(null);
+                pedido.setDataExpedicao(0);
+                pedido.setTipoEncomenda("");
+                pedido.setTipoServico("");
                 pedidoDatabse.setValue(pedido);
                 break;
 

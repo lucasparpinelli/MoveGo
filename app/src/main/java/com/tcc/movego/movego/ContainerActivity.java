@@ -7,9 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.firebase.client.Firebase;
 
-/**
- * Created by solange on 07/05/2016.
- */
 public abstract class ContainerActivity extends AppCompatActivity {
 
     protected abstract Fragment createFragment();

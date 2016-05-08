@@ -10,7 +10,7 @@ public class ConsultasActivity extends ContainerActivity {
     @Override
     protected Fragment createFragment() {
 
-        return new PedidosFragment();
+        return new PedidosListFragment();
     }
 
 
