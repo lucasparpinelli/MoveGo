@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/adicionar_pedido_itemmenu"
-        android:title="Adicionar"
+        android:title="Salvar"
         app:showAsAction="always"/>
 
 
