@@ -1,17 +1,105 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
         <EditText
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Origem"
-            android:ems="10" />
-
+            android:ems="10"
+            android:hint="Origem" />
     </android.support.design.widget.TextInputLayout>
 
-</FrameLayout>
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <EditText
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Destino" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <EditText
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Destinatario" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <EditText
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Embalagem" />
+    </android.support.design.widget.TextInputLayout>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Viações" />
+
+    <Spinner
+        android:id="@+id/spinner_viacoes"
+        style="@style/Widget.AppCompat.Spinner.Underlined"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:entries="@array/viacoes" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tipo de Serviço" />
+
+    <Spinner
+        android:id="@+id/spinner_tipo_servico"
+        style="@style/Widget.AppCompat.Spinner.Underlined"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:entries="@array/tipo_servico" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tipo de Encomenda" />
+
+    <Spinner
+        android:id="@+id/spinner_tipo_encomenda"
+        style="@style/Widget.AppCompat.Spinner.Underlined"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:entries="@array/tipo_encomenda" />
+
+    <Button
+        style="@style/Widget.AppCompat.Spinner.Underlined"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Data de expedição"
+        android:textSize="16sp" />
+
+    <Button
+        style="@style/Widget.AppCompat.Spinner.Underlined"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Data de entrega"
+        android:textSize="16sp" />
+
+</LinearLayout>

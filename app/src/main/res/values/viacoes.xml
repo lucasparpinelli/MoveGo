@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="viacoes">
+        <item>Selecione</item>
+        <item>Viação Cometa</item>
+        <item>Viação Itapemirim</item>
+        <item>Viação Garcia</item>
+    </string-array>
+
+    <string-array name="tipo_servico">
+        <item>Selecione</item>
+        <item>Ponto a ponto</item>
+        <item>Entrega na Rodoviária</item>
+    </string-array>
+
+    <string-array name="tipo_encomenda">
+        <item>Selecione</item>
+        <item>Roupas</item>
+        <item>Higiene</item>
+        <item>Etc</item>
+    </string-array>
+</resources>
