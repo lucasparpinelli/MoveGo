@@ -1,9 +1,12 @@
 package layout;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -16,6 +19,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.firebase.client.Firebase;
+import com.tcc.movego.movego.DatePickerFragment;
 import com.tcc.movego.movego.R;
 import com.tcc.movego.movego.model.Pedido;
 import com.tcc.movego.movego.utils.Constante;
@@ -27,6 +31,12 @@ public class NovoPedidoFragment extends Fragment {
     private EditText mEtOrigem, mEtDestino, mEtDestinatario, mEtEmbalagem;
     private Spinner mSpinnerViacoes, mSpinnerTipoEncomenda, mSpinnerTipoServico;
     private Button mButtonrDataExpedicao, mButtonDataEntrega, mButtonSalvar;
+    private String DIALOG_DATA_ENTREGA = "DataEntrega";
+    private String DIALOG_DATA_EXPEDICAO = "DataExpedicao";
+    private static int REQUEST_DATA_ENTREGA = 100;
+    private static int REQUEST_DATA_EXPEDICAO = 101;
+    private Pedido mPedido;
+
 
     public static NovoPedidoFragment newInstance() {
         NovoPedidoFragment fragment = new NovoPedidoFragment();
@@ -37,6 +47,7 @@ public class NovoPedidoFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+        mPedido = new Pedido();
     }
 
     @Override
@@ -54,7 +65,25 @@ public class NovoPedidoFragment extends Fragment {
         mSpinnerTipoServico = (Spinner) v.findViewById(R.id.spinner_tipo_servico_novopedido);
 
         mButtonDataEntrega = (Button) v.findViewById(R.id.btn_data_entrega_novopedido);
+        mButtonDataEntrega.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fm = getFragmentManager();
+                DatePickerFragment dialog = DatePickerFragment.newInstance(new Date());
+                dialog.setTargetFragment(NovoPedidoFragment.this, REQUEST_DATA_ENTREGA);
+                dialog.show(fm,DIALOG_DATA_ENTREGA);
+            }
+        });
         mButtonrDataExpedicao = (Button) v.findViewById(R.id.btn_data_expedicao_novopedido);
+        mButtonrDataExpedicao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fm = getFragmentManager();
+                DatePickerFragment dialog = DatePickerFragment.newInstance(new Date());
+                dialog.setTargetFragment(NovoPedidoFragment.this, REQUEST_DATA_EXPEDICAO);
+                dialog.show(fm,DIALOG_DATA_EXPEDICAO);
+            }
+        });
         mButtonSalvar = (Button) v.findViewById(R.id.btn_salvar_novopedido);
         mButtonSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,6 +95,24 @@ public class NovoPedidoFragment extends Fragment {
         return v;
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(resultCode != Activity.RESULT_OK){
+            return;
+        }
+
+        if(requestCode == REQUEST_DATA_ENTREGA){
+            Date date = (Date)data.getSerializableExtra(DatePickerFragment.EXTRA_DATE);
+            mButtonDataEntrega.setText(date.toString());
+            mPedido.setDataEntrega(date.getTime());
+        }
+
+        if(requestCode == REQUEST_DATA_EXPEDICAO){
+            Date date = (Date)data.getSerializableExtra(DatePickerFragment.EXTRA_DATE);
+            mButtonrDataExpedicao.setText(date.toString());
+            mPedido.setDataExpedicao(date.getTime());
+        }
+    }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -92,18 +139,15 @@ public class NovoPedidoFragment extends Fragment {
         if(validacao()) {
             //getActivity().finish();
             Firebase ref = new Firebase(Constante.FIREBASE_URL);
-            Firebase pedidoDatabse = ref.child("users").child("pedido");
-            Pedido pedido = new Pedido();
-            pedido.setDataEntrega(new Date());
-            pedido.setDestinatario("Xablau");
-            pedido.setOrigem("Teste");
-            pedido.setEmbalagem("Material");
-            pedido.setViacao(null);
-            pedido.setDestino("Sao Paulo");
-            pedido.setDataExpedicao(new Date());
-            pedido.setTipoEncomenda(null);
-            pedido.setTipoServico(null);
-            pedidoDatabse.push().setValue(pedido);
+            Firebase pedidoDatabse = ref.child("users").child("pedidos");
+            mPedido.setDestino(mEtDestino.getText().toString());
+            mPedido.setEmbalagem(mEtEmbalagem.getText().toString());
+            mPedido.setOrigem(mEtOrigem.getText().toString());
+            mPedido.setDestinatario(mEtDestinatario.getText().toString());
+            mPedido.setViacao(mSpinnerViacoes.getSelectedItem().toString());
+            mPedido.setTipoEncomenda(mSpinnerTipoEncomenda.getSelectedItem().toString());
+            mPedido.setTipoServico(mSpinnerTipoServico.getSelectedItem().toString());
+            pedidoDatabse.push().setValue(mPedido);
         }
     }
 
