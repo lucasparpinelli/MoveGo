@@ -12,7 +12,7 @@ public class ConsultasActivity extends ContainerActivity {
     @Override
     protected Fragment createFragment() {
 
-        return new NovoPedidoFragment();
+        return new LoginFragment();
     }
 
 
